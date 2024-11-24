@@ -1,0 +1,17 @@
+# Use an official Python image with pre-installed tools for development
+FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
+
+# Install required system packages
+RUN apt-get update && apt-get install -y \
+    mysql-server \
+    libmysqlclient-dev \
+    && apt-get clean
+
+# Install Python dependencies
+RUN pip install apache-airflow apache-airflow-providers-mysql pyreadstat pandas
+
+# Expose MySQL and Airflow ports
+EXPOSE 8080 3306
+
+# Set default command for MySQL
+RUN echo "[mysqld]\nskip-host-cache\nskip-name-resolve\n" >> /etc/mysql/my.cnf

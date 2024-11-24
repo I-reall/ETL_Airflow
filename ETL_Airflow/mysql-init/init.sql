@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS translation_db;
+CREATE DATABASE IF NOT EXISTS labour_fs_db;
